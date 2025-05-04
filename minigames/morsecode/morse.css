@@ -1,1 +1,38 @@
-body { font-family: monospace; background: black; color: lime; }
+body {
+    font-family: monospace;
+    background-color: #111;
+    color: #0f0;
+    text-align: center;
+    padding: 20px;
+  }
+  .reference {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+  }
+  .ref-cell {
+    border: 1px solid #0f0;
+    padding: 5px 10px;
+    min-width: 50px;
+    text-align: center;
+  }
+  #morseOutput {
+    margin: 20px;
+    font-size: 1.5em;
+  }
+  #inputField {
+    font-size: 1.2em;
+    padding: 5px;
+  }
+  #submitBtn {
+    font-size: 1em;
+    padding: 6px 12px;
+  }
+  #timer {
+    font-size: 1.5em;
+    margin-top: 10px;
+  }
+  

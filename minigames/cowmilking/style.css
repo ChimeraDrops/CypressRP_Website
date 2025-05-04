@@ -1,1 +1,77 @@
-body { background-color: #f2efe5; }
+body {
+    user-select: none;
+    margin: 0;
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  #game {
+    position: relative;
+    width: 512px;
+    height: 512px;
+    overflow: hidden;
+  }
+  
+  #udder, #udder-anim {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 435px;
+    height: auto;
+    pointer-events: none;
+  }
+  
+  #udder {
+    z-index: 0;
+  }
+  
+  #udder-anim {
+    z-index: 1;
+    background: transparent; /* Prevent blue background */
+  }
+  
+  .teat-zone {
+    position: absolute;
+    bottom: 180px;
+    width: 64px;
+    height: 120px;
+    cursor: grab;
+    z-index: 2;
+  }
+  
+  #hand {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    pointer-events: none;
+    z-index: 3;
+  }
+  
+  #bucket {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 100px;
+    background: #ccc;
+    border: 4px solid #666;
+    border-radius: 8px;
+    z-index: 1;
+  }
+  
+  #milk-fill {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 140px;
+    height: 0;
+    background: rgba(255, 255, 255, 0.9);
+    transition: height 0.3s ease;
+  }
+  
+  -webkit-tap-highlight-color: transparent;
