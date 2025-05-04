@@ -14,14 +14,6 @@ body {
   background: #222;
   overflow: hidden;
 }
-#udder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: 1;
-}
 #udder, #udder-anim {
   position: absolute;
   top: -150px;
