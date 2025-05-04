@@ -15,32 +15,32 @@ let handInZone = false;
 let gameOver = false;
 
 const handFrames = [
-  "images/34BCH7PX/hand-1.png",
-  "images/bG1931gF/hand-2.png",
-  "images/xXwPv6vz/hand-3.png",
-  "images/PphzcNFf/hand-4.png"
+  "images/hand-1.png",
+  "images/hand-2.png",
+  "images/hand-3.png",
+  "images/hand-4.png"
 ];
 
 const udderFrames = {
   1: [
-    "images/hJkLsLCJ/udder1-1.png",
-    "images/k6Wxp2ZT/udder1-2.png",
-    "images/LnhkGcvP/udder1-3.png"
+    "images/udder1-1.png",
+    "images/udder1-2.png",
+    "images/udder1-3.png"
   ],
   2: [
-    "images/n9kqn6n7/udder2-1.png",
-    "images/XB3wSV64/udder2-2.png",
-    "images/gwbvXnpy/udder2-3.png"
+    "images/udder2-1.png",
+    "images/udder2-2.png",
+    "images/udder2-3.png"
   ],
   3: [
-    "images/7bycY0xY/udder3-1.png",
-    "images/w3crtMv5/udder3-2.png",
-    "images/Q905ymTS/udder3-3.png"
+    "images/udder3-1.png",
+    "images/udder3-2.png",
+    "images/udder3-3.png"
   ],
   4: [
-    "images/2VkKnYbs/udder4-1.png",
-    "images/56sk3r86/udder4-2.png",
-    "images/pyczQ0xL/udder4-3.png"
+    "images/udder4-1.png",
+    "images/udder4-2.png",
+    "images/udder4-3.png"
   ]
 };
 
