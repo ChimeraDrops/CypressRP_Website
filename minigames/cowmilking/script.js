@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   const hand = document.getElementById("hand");
   const teatZones = document.querySelectorAll(".teat-zone");

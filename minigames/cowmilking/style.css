@@ -22,13 +22,13 @@ body {
   height: auto;
   z-index: 1;
 }
-#udder-anim {
+#udder, #udder-anim {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 435px;
   height: auto;
-  z-index: 2;
   pointer-events: none;
 }
 .teat-zone {
