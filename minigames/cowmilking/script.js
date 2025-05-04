@@ -30,31 +30,36 @@ const udderFrames = {
 
 document.addEventListener("mousemove", (e) => {
   const gameRect = document.getElementById("game").getBoundingClientRect();
-
   const relX = e.clientX - gameRect.left;
   const relY = e.clientY - gameRect.top;
 
-  const x = relX - 32;
-  const y = relY - 32;
-  hand.style.left = `${x}px`;
-  hand.style.top = `${y}px`;
+  hand.style.left = `${relX - 32}px`;
+  hand.style.top = `${relY - 32}px`;
 
   if (gameOver || !isDragging || !currentTeat) return;
 
-  const zone = document.querySelector(`.teat-zone[data-id="${currentTeat}"]`);
-  if (!zone) return;
+  const distance = e.clientY - startY;
+  const frames = udderFrames[currentTeat];
+  let selectedFrame = null;
 
-  const rect = zone.getBoundingClientRect();
-  const inBounds = e.clientX >= rect.left && e.clientX <= rect.right &&
-                   e.clientY >= rect.top && e.clientY <= rect.bottom;
-
-  if (!inBounds) {
-    if (handInZone) {
-      resetUdderToBase();
-      handInZone = false;
+  if (distance >= 60) {
+    selectedFrame = frames[2];
+    if (!squirtTriggered) {
+      squirtMilk(currentTeat);
+      squirtTriggered = true;
     }
-    return;
+  } else if (distance >= 40) {
+    selectedFrame = frames[1];
+  } else if (distance >= 20) {
+    selectedFrame = frames[0];
   }
+
+  if (selectedFrame && selectedFrame !== currentUdderFrame) {
+    udderAnim.style.display = "block";
+    udderAnim.src = selectedFrame;
+    currentUdderFrame = selectedFrame;
+  }
+});
 
   handInZone = true;
 
@@ -86,14 +91,14 @@ teatZones.forEach(zone => {
 
   zone.addEventListener("mousedown", (e) => {
     if (gameOver || lastTeat === id) return;
-    isDragging = true;
+
     currentTeat = id;
+    isDragging = true;
     startY = e.clientY;
     squirtTriggered = false;
     currentUdderFrame = "";
     handInZone = true;
 
-    // Trigger squirt sound on click to satisfy browser autoplay rules
     squirtSound.volume = 1.0;
     squirtSound.currentTime = 0;
     squirtSound.play().catch(err => console.warn("Audio blocked:", err));
