@@ -22,26 +22,10 @@ const handFrames = [
 ];
 
 const udderFrames = {
-  1: [
-    "images/udder1-1.png",
-    "images/udder1-2.png",
-    "images/udder1-3.png"
-  ],
-  2: [
-    "images/udder2-1.png",
-    "images/udder2-2.png",
-    "images/udder2-3.png"
-  ],
-  3: [
-    "images/udder3-1.png",
-    "images/udder3-2.png",
-    "images/udder3-3.png"
-  ],
-  4: [
-    "images/udder4-1.png",
-    "images/udder4-2.png",
-    "images/udder4-3.png"
-  ]
+  1: ["images/udder1-1.png", "images/udder1-2.png", "images/udder1-3.png"],
+  2: ["images/udder2-1.png", "images/udder2-2.png", "images/udder2-3.png"],
+  3: ["images/udder3-1.png", "images/udder3-2.png", "images/udder3-3.png"],
+  4: ["images/udder4-1.png", "images/udder4-2.png", "images/udder4-3.png"]
 };
 
 document.addEventListener("mousemove", (e) => {
