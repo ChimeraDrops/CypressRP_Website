@@ -1,77 +1,63 @@
 body {
-    user-select: none;
-    margin: 0;
-    background: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  #game {
-    position: relative;
-    width: 512px;
-    height: 512px;
-    overflow: hidden;
-  }
-  
-  #udder, #udder-anim {
-    position: absolute;
-    top: -150px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 435px;
-    height: auto;
-    pointer-events: none;
-  }
-  
-  #udder {
-    z-index: 0;
-  }
-  
-  #udder-anim {
-    z-index: 1;
-    background: transparent; /* Prevent blue background */
-  }
-  
-  .teat-zone {
-    position: absolute;
-    bottom: 180px;
-    width: 64px;
-    height: 120px;
-    cursor: grab;
-    z-index: 2;
-  }
-  
-  #hand {
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    pointer-events: none;
-    z-index: 3;
-  }
-  
-  #bucket {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 160px;
-    height: 100px;
-    background: #ccc;
-    border: 4px solid #666;
-    border-radius: 8px;
-    z-index: 1;
-  }
-  
-  #milk-fill {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    width: 140px;
-    height: 0;
-    background: rgba(255, 255, 255, 0.9);
-    transition: height 0.3s ease;
-  }
-  
-  -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  background: #eae0c8;
+  font-family: sans-serif;
+  user-select: none;
+}
+#game {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 0 auto;
+  background: #fff;
+  border: 2px solid #333;
+  overflow: hidden;
+}
+#udder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: auto;
+  z-index: 1;
+}
+#udder-anim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+.teat-zone {
+  position: absolute;
+  bottom: 100px;
+  width: 80px;
+  height: 100px;
+  z-index: 3;
+  background: rgba(255, 0, 0, 0.0);
+}
+#hand {
+  position: absolute;
+  z-index: 4;
+  width: 120px;
+  pointer-events: none;
+}
+#bucket {
+  position: absolute;
+  bottom: 20px;
+  left: 200px;
+  width: 200px;
+  height: 100px;
+  background: #ccc;
+  border: 2px solid #333;
+  z-index: 0;
+}
+#milk-fill {
+  width: 100%;
+  height: 0;
+  background: white;
+  position: absolute;
+  bottom: 0;
+}
