@@ -1,0 +1,1 @@
+console.log('Cow milking logic here');
