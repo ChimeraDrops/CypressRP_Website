@@ -1,4 +1,3 @@
-
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -56,54 +55,51 @@ function preloadImages(callback) {
     });
 }
 
-// Mouse and keyboard input
 canvas.addEventListener('mousemove', e => {
     const rect = canvas.getBoundingClientRect();
     forceps.x = e.clientX - rect.left;
     forceps.y = e.clientY - rect.top;
 });
+
+let debugPiecesOnTop = false;
+document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowUp') debugPiecesOnTop = true;
+    else if (e.key === 'ArrowDown') debugPiecesOnTop = false;
+});
+
 canvas.addEventListener('mousedown', e => {
-    if (e.button === 0) forceps.isLeftHeld = true;
-    if (e.button === 2) forceps.isRightHeld = true;
+    if (e.button === 0) {
+        forceps.isLeftHeld = true;
+        forceps.image = images[assetManifest.forcepsClosed];
+        for (let i = gamePieces.length - 1; i >= 0; i--) {
+            if (gamePieces[i].containsPoint(forceps.x, forceps.y)) {
+                forceps.heldPiece = gamePieces[i];
+                gamePieces[i].grabbed = true;
+                break;
+            }
+        }
+    }
+    if (e.button === 2) {
+        forceps.isRightHeld = true;
+        forceps.image = images[assetManifest.forcepsClosed];
+    }
 });
 canvas.addEventListener('mouseup', e => {
-    if (e.button === 0) forceps.isLeftHeld = false;
-    if (e.button === 2) forceps.isRightHeld = false;
+    if (e.button === 0) {
+        forceps.isLeftHeld = false;
+        forceps.image = images[assetManifest.forcepsOpen];
+        if (forceps.heldPiece) {
+            forceps.heldPiece.grabbed = false;
+            forceps.heldPiece = null;
+        }
+    }
+    if (e.button === 2) {
+        forceps.isRightHeld = false;
+        forceps.image = images[assetManifest.forcepsOpen];
+    }
 });
 canvas.addEventListener('contextmenu', e => e.preventDefault());
 
-function gameLoop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw background
-    if (activePuzzle) {
-        ctx.drawImage(images[`${activePuzzle}.png`], 0, 0, canvas.width, canvas.height);
-    }
-
-    // Draw forceps
-    if (forceps.image) {
-        ctx.save();
-        ctx.translate(forceps.x, forceps.y);
-        ctx.rotate(forceps.rotation);
-        ctx.drawImage(forceps.image, -forceps.width/2, -forceps.height/2, forceps.width, forceps.height);
-        ctx.restore();
-    }
-
-    requestAnimationFrame(gameLoop);
-}
-
-function startGame() {
-    // Pick a puzzle
-    const index = Math.floor(Math.random() * assetManifest.backgrounds.length);
-    activePuzzle = assetManifest.backgrounds[index];
-    forceps.image = images[assetManifest.forcepsOpen];
-    requestAnimationFrame(gameLoop);
-}
-
-// Start after images are ready
-preloadImages(startGame);
-
-// Piece structure
 class GamePiece {
     constructor(name, image, x, y, slotX, slotY, rotation = 0) {
         this.name = name;
@@ -129,11 +125,10 @@ class GamePiece {
     containsPoint(px, py) {
         const dx = this.x - px;
         const dy = this.y - py;
-        return Math.sqrt(dx * dx + dy * dy) < 50; // basic grab range
+        return Math.sqrt(dx * dx + dy * dy) < 50;
     }
 }
 
-// Map puzzle names to their required pieces
 const puzzlePiecesMap = {
     '1_brokenleg': ['highbone', 'lowbone'],
     '2_brokenarm-11': ['highbone'],
@@ -171,56 +166,6 @@ function spawnPiecesForPuzzle(puzzleName) {
     }
 }
 
-// Extend game loop to draw pieces
-const originalLoop = gameLoop;
-gameLoop = function () {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (activePuzzle) {
-        ctx.drawImage(images[`${activePuzzle}.png`], 0, 0, canvas.width, canvas.height);
-    }
-
-    for (const piece of gamePieces) {
-        piece.draw(ctx);
-    }
-
-    if (forceps.image) {
-        ctx.save();
-        ctx.translate(forceps.x, forceps.y);
-        ctx.rotate(forceps.rotation);
-        ctx.drawImage(forceps.image, -forceps.width/2, -forceps.height/2, forceps.width, forceps.height);
-        ctx.restore();
-    }
-
-    requestAnimationFrame(gameLoop);
-};
-
-// Drag logic
-canvas.addEventListener('mousedown', e => {
-    if (e.button === 0) {
-        forceps.isLeftHeld = true;
-        for (let i = gamePieces.length - 1; i >= 0; i--) {
-            if (gamePieces[i].containsPoint(forceps.x, forceps.y)) {
-                forceps.heldPiece = gamePieces[i];
-                gamePieces[i].grabbed = true;
-                break;
-            }
-        }
-    }
-    if (e.button === 2) forceps.isRightHeld = true;
-});
-
-canvas.addEventListener('mouseup', e => {
-    if (e.button === 0) {
-        forceps.isLeftHeld = false;
-        if (forceps.heldPiece) {
-            forceps.heldPiece.grabbed = false;
-            forceps.heldPiece = null;
-        }
-    }
-    if (e.button === 2) forceps.isRightHeld = false;
-});
-
-// Move grabbed piece with forceps
 function updateHeldPiece() {
     if (forceps.heldPiece) {
         forceps.heldPiece.x = forceps.x;
@@ -229,23 +174,11 @@ function updateHeldPiece() {
 }
 setInterval(updateHeldPiece, 16);
 
-// Extend startGame
-const originalStart = startGame;
-startGame = function () {
-    const index = Math.floor(Math.random() * assetManifest.backgrounds.length);
-    activePuzzle = assetManifest.backgrounds[index];
-    forceps.image = images[assetManifest.forcepsOpen];
-    spawnPiecesForPuzzle(activePuzzle);
-    requestAnimationFrame(gameLoop);
-};
-
 let wheelDelta = 0;
 canvas.addEventListener('wheel', (e) => {
     if (!forceps.heldPiece || !forceps.isLeftHeld) return;
-
     e.preventDefault();
     wheelDelta += e.deltaY;
-
     if (wheelDelta <= -100) {
         zoomHeldPiece();
         wheelDelta = 0;
@@ -255,17 +188,14 @@ canvas.addEventListener('wheel', (e) => {
 function zoomHeldPiece() {
     const piece = forceps.heldPiece;
     if (!piece) return;
-
     piece.scale += 0.05;
     if (piece.scale >= 1.0) {
         if (checkCollision(piece)) {
-            // Fail
             overlays.fail = `${activePuzzle}_fail.png`;
             showOverlay(overlays.fail);
             score.fail++;
             piece.scale = 0.85;
         } else {
-            // Success
             overlays.success = `${activePuzzle}_success.png`;
             showOverlay(overlays.success);
             animateSuccess(piece);
@@ -275,20 +205,15 @@ function zoomHeldPiece() {
 
 function checkCollision(piece) {
     if (!forceps.isLeftHeld && !forceps.isRightHeld) return false;
-
-    // Create offscreen canvas for pixel collision check
     const maskImage = images[`${activePuzzle}.png`];
     const off = document.createElement('canvas');
     off.width = canvas.width;
     off.height = canvas.height;
     const octx = off.getContext('2d');
     octx.drawImage(maskImage, 0, 0, canvas.width, canvas.height);
-
     const tipX = Math.floor(forceps.x);
     const tipY = Math.floor(forceps.y);
     const pixel = octx.getImageData(tipX, tipY, 1, 1).data;
-
-    // If alpha < 50, assume it's empty slot area
     return pixel[3] > 50;
 }
 
@@ -296,7 +221,6 @@ function showOverlay(imageKey) {
     const overlayImg = images[imageKey];
     let flashes = 0;
     const maxFlashes = 4;
-
     const flashInterval = setInterval(() => {
         if (flashes % 2 === 0) {
             ctx.drawImage(overlayImg, 0, 0, canvas.width, canvas.height);
@@ -304,9 +228,7 @@ function showOverlay(imageKey) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
         flashes++;
-        if (flashes > maxFlashes) {
-            clearInterval(flashInterval);
-        }
+        if (flashes > maxFlashes) clearInterval(flashInterval);
     }, 150);
 }
 
@@ -331,3 +253,39 @@ function animateSuccess(piece) {
         }
     }, 50);
 }
+
+function gameLoop() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (activePuzzle && !debugPiecesOnTop) {
+        ctx.drawImage(images[`${activePuzzle}.png`], 0, 0, canvas.width, canvas.height);
+    }
+
+    for (const piece of gamePieces) {
+        piece.draw(ctx);
+    }
+
+    if (activePuzzle && debugPiecesOnTop) {
+        ctx.drawImage(images[`${activePuzzle}.png`], 0, 0, canvas.width, canvas.height);
+    }
+
+    if (forceps.image) {
+        ctx.save();
+        ctx.translate(forceps.x, forceps.y);
+        ctx.rotate(forceps.rotation);
+        ctx.drawImage(forceps.image, -forceps.width / 2, -forceps.height / 2, forceps.width, forceps.height);
+        ctx.restore();
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+function startGame() {
+    const index = Math.floor(Math.random() * assetManifest.backgrounds.length);
+    activePuzzle = assetManifest.backgrounds[index];
+    forceps.image = images[assetManifest.forcepsOpen];
+    spawnPiecesForPuzzle(activePuzzle);
+    requestAnimationFrame(gameLoop);
+}
+
+preloadImages(startGame);
