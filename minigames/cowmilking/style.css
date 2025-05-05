@@ -23,18 +23,18 @@ body {
   height: auto;
   pointer-events: none;
 }
+
 .teat-zone {
   position: absolute;
-  bottom: 230px; /* adjust as needed */
+  bottom: 270px; /* was 230px — raised by 40px */
   width: 64px;
   height: 120px;
   z-index: 999;
-  background: rgba(255, 0, 0, 0.2);
   cursor: grab;
-
-  /* Visual debug bars */
   box-sizing: border-box;
 }
+
+
 .teat-zone::before,
 .teat-zone::after {
   content: "";
@@ -51,9 +51,9 @@ body {
   bottom: 0;
 }
 
-.teat-zone[data-id="1"] { left: 80px; }
-.teat-zone[data-id="2"] { left: 180px; }
-.teat-zone[data-id="3"] { left: 280px; }
+.teat-zone[data-id="1"] { left: 95px; }
+.teat-zone[data-id="2"] { left: 190px; }
+.teat-zone[data-id="3"] { left: 285px; }
 .teat-zone[data-id="4"] { left: 380px; }
 
 #hand {
