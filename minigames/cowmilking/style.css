@@ -67,9 +67,9 @@ body {
 }
 
 .teat-zone[data-id="1"] { left: 140px; }
-.teat-zone[data-id="2"] { left: 200px; }
-.teat-zone[data-id="3"] { left: 295px; }
-.teat-zone[data-id="4"] { left: 390px; }
+.teat-zone[data-id="2"] { left: 220px; }
+.teat-zone[data-id="3"] { left: 310px; }
+.teat-zone[data-id="4"] { left: 405px; }
 
 #hand {
   position: absolute;
