@@ -1,10 +1,46 @@
-<h1>Sine Wave Match</h1>
-<canvas id="waveCanvas" width="800" height="400"></canvas>
-<div class="knobs">
-  <div class="knob" id="knobFreq">Freq</div>
-  <div class="knob" id="knobAmp">Amp</div>
-  <div class="knob" id="knobColor">Color</div>
-</div>
-<div id="success">✅ Wave Matched!</div>
-<div id="failure">❌ Time's up!</div>
-<div id="timer">⏱️ Time left: 20s</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal Matcher Game</title>
+  <link rel="stylesheet" href="wave.css" />
+</head>
+<body>
+  <h1>Sine Wave Match</h1>
+  <canvas id="waveCanvas" width="800" height="400"></canvas>
+
+  <div class="knobs">
+    <div class="knob" id="knobFreq">Freq</div>
+    <div class="knob" id="knobAmp">Amp</div>
+    <div class="knob" id="knobColor">Color</div>
+  </div>
+
+  <div id="success">✅ Wave Matched!</div>
+  <div id="failure">❌ Time's up!</div>
+
+  <!-- 👇 Added Play Again button -->
+  <button id="play-again" style="display: none;">🔁 Play Again</button>
+
+  <div id="timer">⏱️ Time left: 20s</div>
+
+  <script src="wave.js"></script>
+  <script>
+    const playAgainBtn = document.getElementById('play-again');
+    const success = document.getElementById('success');
+    const failure = document.getElementById('failure');
+
+    // Watch for success or failure display and show button
+    const observer = new MutationObserver(() => {
+      if (success.style.display === 'block' || failure.style.display === 'block') {
+        playAgainBtn.style.display = 'inline-block';
+      }
+    });
+
+    observer.observe(success, { attributes: true, attributeFilter: ['style'] });
+    observer.observe(failure, { attributes: true, attributeFilter: ['style'] });
+
+    playAgainBtn.addEventListener('click', () => location.reload());
+  </script>
+</body>
+</html>
