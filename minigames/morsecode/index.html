@@ -9,12 +9,30 @@
 <body>
   <h1>Morse Code Minigame</h1>
   <p>Decode the Morse code. Use the chart below and type the word you hear. You have limited time per round.</p>
+
   <div id="morseOutput"></div>
   <input id="inputField" type="text" placeholder="Type answer here...">
   <button id="submitBtn">Submit</button>
   <div id="timer">Time left: 60s</div>
 
+  <!-- ✅ Play Again button -->
+  <button id="play-again" style="display: none; margin-top: 20px;">🔁 Play Again</button>
+
   <h3>Morse Code Reference</h3>
   <div class="reference" id="morseTable"></div>
+
+  <script>
+    const playAgainBtn = document.getElementById('play-again');
+
+    playAgainBtn.addEventListener('click', () => location.reload());
+
+    const originalAlert = window.alert;
+    window.alert = function(message) {
+      if (message.includes("Game over") || message.includes("completed all stages")) {
+        playAgainBtn.style.display = 'inline-block';
+      }
+      originalAlert(message);
+    };
+  </script>
 </body>
 </html>
