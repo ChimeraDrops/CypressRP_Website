@@ -26,8 +26,8 @@ body {
 
 .teat-zone {
   position: absolute;
-  bottom: 300px; /* was 230px — raised by 40px */
-  width: 64px;
+  bottom: 270px; /* was 230px — raised by 40px */
+  width: 50px;
   height: 200px;
   z-index: 999;
   cursor: grab;
@@ -51,10 +51,10 @@ body {
   bottom: 0;
 }
 
-.teat-zone[data-id="1"] { left: 130px; }
-.teat-zone[data-id="2"] { left: 190px; }
-.teat-zone[data-id="3"] { left: 285px; }
-.teat-zone[data-id="4"] { left: 380px; }
+.teat-zone[data-id="1"] { left: 140px; }
+.teat-zone[data-id="2"] { left: 200px; }
+.teat-zone[data-id="3"] { left: 295px; }
+.teat-zone[data-id="4"] { left: 390px; }
 
 #hand {
   position: absolute;
