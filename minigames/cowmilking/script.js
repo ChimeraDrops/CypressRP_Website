@@ -61,31 +61,6 @@ document.addEventListener("mousemove", (e) => {
   }
 });
 
-  handInZone = true;
-
-  const distance = e.clientY - startY;
-  const frames = udderFrames[currentTeat];
-  let selectedFrame = null;
-
-  if (distance >= 60 && frames[2]) {
-    selectedFrame = frames[2];
-    if (!squirtTriggered) {
-      squirtMilk(currentTeat);
-      squirtTriggered = true;
-    }
-  } else if (distance >= 40 && frames[1]) {
-    selectedFrame = frames[1];
-  } else if (distance >= 20 && frames[0]) {
-    selectedFrame = frames[0];
-  }
-
-  if (selectedFrame && selectedFrame !== currentUdderFrame) {
-    udderAnim.style.display = "block";
-    udderAnim.src = selectedFrame;
-    currentUdderFrame = selectedFrame;
-  }
-});
-
 teatZones.forEach(zone => {
   const id = parseInt(zone.dataset.id);
 
