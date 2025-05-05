@@ -7,21 +7,26 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div id="grid-overlay"></div>
   <div id="game">
+    <!-- Grid overlay must be INSIDE the game container to align correctly -->
+    <div id="grid-overlay"></div>
+
     <img id="udder" src="images/udder.png" />
     <img id="udder-anim" src="" />
-    <div class="teat-zone" data-id="1" style="left: 80px;"></div>
-    <div class="teat-zone" data-id="2" style="left: 180px;"></div>
-    <div class="teat-zone" data-id="3" style="left: 280px;"></div>
-    <div class="teat-zone" data-id="4" style="left: 380px;"></div>
+
+    <!-- Teat zones -->
+    <div class="teat-zone" data-id="1"></div>
+    <div class="teat-zone" data-id="2"></div>
+    <div class="teat-zone" data-id="3"></div>
+    <div class="teat-zone" data-id="4"></div>
+
     <img id="hand" src="images/hand-1.png" />
+
     <div id="bucket">
       <div id="milk-fill"></div>
     </div>
+
     <audio id="squirt-sound" src="https://files.catbox.moe/3aewob.mp3" preload="auto"></audio>
   </div>
 </body>
 </html>
-
-

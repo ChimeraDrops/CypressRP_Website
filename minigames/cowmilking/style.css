@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   background: #222;
@@ -6,6 +5,7 @@ body {
   user-select: none;
   overflow: hidden;
 }
+
 #game {
   position: relative;
   width: 600px;
@@ -14,6 +14,22 @@ body {
   background: #222;
   overflow: hidden;
 }
+
+/* Grid overlay aligned inside game window */
+#grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(0,255,0,0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,255,0,0.2) 1px, transparent 1px);
+  background-size: 5px 5px;
+  z-index: 10;
+  pointer-events: none;
+}
+
 #udder, #udder-anim {
   position: absolute;
   top: -150px;
@@ -22,32 +38,23 @@ body {
   width: 435px;
   height: auto;
   pointer-events: none;
-}
-
-#grid-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 600px;
-  height: 600px;
-  background-image: 
-    linear-gradient(to right, rgba(0,255,0,0.2) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,255,0,0.2) 1px, transparent 1px);
-  background-size: 5px 5px;
-  z-index: 50;
-  pointer-events: none;
+  z-index: 1;
 }
 
 .teat-zone {
   position: absolute;
-  bottom: 270px; /* was 230px — raised by 40px */
+  bottom: 270px;
   width: 50px;
   height: 200px;
-  z-index: 999;
   cursor: grab;
+  z-index: 20;
   box-sizing: border-box;
 }
 
+.teat-zone[data-id="1"] { left: 140px; }
+.teat-zone[data-id="2"] { left: 200px; }
+.teat-zone[data-id="3"] { left: 295px; }
+.teat-zone[data-id="4"] { left: 390px; }
 
 .teat-zone::before,
 .teat-zone::after {
@@ -65,14 +72,9 @@ body {
   bottom: 0;
 }
 
-.teat-zone[data-id="1"] { left: 140px; }
-.teat-zone[data-id="2"] { left: 200px; }
-.teat-zone[data-id="3"] { left: 295px; }
-.teat-zone[data-id="4"] { left: 390px; }
-
 #hand {
   position: absolute;
-  z-index: 4;
+  z-index: 30;
   width: 120px;
   pointer-events: none;
 }
@@ -87,6 +89,7 @@ body {
   border: 2px solid #333;
   z-index: 0;
 }
+
 #milk-fill {
   width: 100%;
   height: 0;
