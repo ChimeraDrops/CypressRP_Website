@@ -44,7 +44,7 @@ body {
 .teat-zone {
   position: absolute;
   bottom: 270px;
-  width: 50px;
+  width: 65px;
   height: 200px;
   z-index: 999;
   cursor: grab;
@@ -67,9 +67,9 @@ body {
 }
 
 .teat-zone[data-id="1"] { left: 140px; }
-.teat-zone[data-id="2"] { left: 220px; }
+.teat-zone[data-id="2"] { left: 230px; }
 .teat-zone[data-id="3"] { left: 310px; }
-.teat-zone[data-id="4"] { left: 405px; }
+.teat-zone[data-id="4"] { left: 420px; }
 
 #hand {
   position: absolute;
