@@ -24,19 +24,18 @@ body {
   pointer-events: none;
 }
 
-#game::before {
-  content: "";
+#grid-overlay {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 600px;
+  height: 600px;
   background-image: 
-    linear-gradient(to right, rgba(0,255,0,0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,255,0,0.1) 1px, transparent 1px);
+    linear-gradient(to right, rgba(0,255,0,0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,255,0,0.2) 1px, transparent 1px);
   background-size: 5px 5px;
+  z-index: 50;
   pointer-events: none;
-  z-index: 9999;
 }
 
 .teat-zone {
