@@ -34,39 +34,40 @@ if (!canvas) {
 
 // === SPAWN DATA ===
 const pieceSpawnData = {
-  "6_sexfreak": [
-    { piece: "plug.png", x: 516, y: 332 },
-    { piece: "choke.png", x: 515, y: 826 }
-  ],
-  "2_brokenarm-11": [
-    { piece: "highbone.png", x: 711, y: 389 }
-  ],
-  "3_brokenlegs": [
-    { piece: "highbone.png", x: 413, y: 656 },
-    { piece: "highbone.png", x: 457, y: 663 },
-    { piece: "lowbone.png", x: 587, y: 671 },
-    { piece: "lowbone.png", x: 631, y: 678 }
-  ],
-  "3_weird": [
-    { piece: "spider.png", x: 436, y: 490 },
-    { piece: "leaf.png", x: 564, y: 560 },
-    { piece: "gerbil.png", x: 511, y: 863 }
-  ],
-  "4_choke": [
-    { piece: "choke.png", x: 511, y: 189 }
-  ],
-  "5_badnews": [
-    { piece: "highbone.png", x: 443, y: 459 },
-    { piece: "highbone.png", x: 718, y: 493 },
-    { piece: "highbone.png", x: 418, y: 667 },
-    { piece: "lowbone.png", x: 585, y: 670 },
-    { piece: "lowbone.png", x: 629, y: 677 },
-    { piece: "leaf.png", x: 439, y: 806 }
-  ],
-  "1_brokenleg": [
-    { piece: "highbone.png", x: 450, y: 600 },
-    { piece: "lowbone.png", x: 600, y: 620 }
-  ]
+    "1_brokenleg": [
+      { piece: "highbone.png", x: 549, y: 655 },
+      { piece: "lowbone.png", x: 549, y: 776 }
+    ],
+    "2_brokenarm-11": [
+      { piece: "highbone.png", x: 694, y: 372 }
+    ],
+    "3_brokenlegs": [
+      { piece: "highbone.png", x: 407, y: 659 },
+      { piece: "lowbone.png", x: 407, y: 782 },
+      { piece: "highbone.png", x: 641, y: 661 },
+      { piece: "lowbone.png", x: 641, y: 782 }
+    ],
+    "3_weird": [
+      { piece: "spider.png", x: 495, y: 359 },
+      { piece: "leaf.png", x: 557, y: 444 },
+      { piece: "gerbil.png", x: 500, y: 637 }
+    ],
+    "4_choke": [
+      { piece: "choke.png", x: 512, y: 215 }
+    ],
+    "5_badnews": [
+      { piece: "highbone.png", x: 705, y: 364 },
+      { piece: "lowbone.png", x: 705, y: 484 },
+      { piece: "highbone.png", x: 408, y: 660 },
+      { piece: "lowbone.png", x: 408, y: 781 },
+      { piece: "highbone.png", x: 639, y: 661 },
+      { piece: "lowbone.png", x: 639, y: 782 },
+      { piece: "leaf.png", x: 556, y: 444 }
+    ],
+    "6_sexfreak": [
+      { piece: "plug.png", x: 694, y: 372 },
+      { piece: "choke.png", x: 512, y: 215 }
+    ]
 };
 
 // === CLASSES ===
