@@ -34,38 +34,38 @@ if (!canvas) {
 // === SPAWN DATA ===
 const pieceSpawnData = {
   "1_brokenleg": [
-    { piece: "highbone.png",    x: 618+0, y: 838 },
-    { piece: "lowbone.png",     x: 618+0, y: 838 }
+    { piece: "highbone.png",    x: 618-200, y: 838 },
+    { piece: "lowbone.png",     x: 618-200, y: 838 }
   ],
   "2_brokenarm-11": [
-    { piece: "highbone.png",    x: 725+0, y: 524 }
+    { piece: "highbone.png",    x: 725-200, y: 524 }
   ],
   "3_brokenlegs": [
-    { piece: "highbone.png",    x: 428+0, y: 824 },
-    { piece: "lowbone.png",     x: 428+0, y: 824 },
-    { piece: "highbone.png",    x: 618+0, y: 838 },
-    { piece: "lowbone.png",     x: 618+0, y: 838 }
+    { piece: "highbone.png",    x: 428-200, y: 824 },
+    { piece: "lowbone.png",     x: 428-200, y: 824 },
+    { piece: "highbone.png",    x: 618-200, y: 838 },
+    { piece: "lowbone.png",     x: 618-200, y: 838 }
   ],
   "3_weird": [
-    { piece: "spider.png",  x: 540+0, y: 504 },
-    { piece: "leaf.png",    x: 565+0, y: 584 },
-    { piece: "gerbil.png",  x: 518+0, y: 896 }
+    { piece: "spider.png",  x: 540-200, y: 504 },
+    { piece: "leaf.png",    x: 565-200, y: 584 },
+    { piece: "gerbil.png",  x: 518-200, y: 896 }
   ],
   "4_choke": [
-    { piece: "choke.png",   x: 520+0, y: 324 }
+    { piece: "choke.png",   x: 520-200, y: 324 }
   ],
   "5_badnews": [
-    { piece: "highbone.png",    x: 428+0, y: 824 },
-    { piece: "lowbone.png",     x: 428+0, y: 824 },
-    { piece: "highbone.png",    x: 618+0, y: 838 },
-    { piece: "lowbone.png",     x: 618+0, y: 838 },
-    { piece: "highbone.png",    x: 720+0, y: 504 },
-    { piece: "lowbone.png",     x: 720+0, y: 504 },
-    { piece: "leaf.png",        x: 420+0, y: 504 }
+    { piece: "highbone.png",    x: 428-200, y: 824 },
+    { piece: "lowbone.png",     x: 428-200, y: 824 },
+    { piece: "highbone.png",    x: 618-200, y: 838 },
+    { piece: "lowbone.png",     x: 618-200, y: 838 },
+    { piece: "highbone.png",    x: 720-200, y: 504 },
+    { piece: "lowbone.png",     x: 720-200, y: 504 },
+    { piece: "leaf.png",        x: 420-200, y: 504 }
   ],
   "6_sexfreak": [
-    { piece: "plug.png",    x: 520+0, y: 859 },
-    { piece: "choke.png",   x: 520+0, y: 344 }
+    { piece: "plug.png",    x: 520-200, y: 859 },
+    { piece: "choke.png",   x: 520-200, y: 344 }
   ]
 };
 
