@@ -22,8 +22,8 @@ let forceps = {
 
 const assetManifest = {
   backgrounds: ['1_brokenleg', '2_brokenarm-11', '3_brokenlegs', '3_weird', '4_choke', '5_badnews', '6_sexfreak'],
-  forcepsOpen: 'forcep_open.png',
-  forcepsClosed: 'forcep_closed.png',
+  forcepsOpen: 'forceps_open.png',
+  forcepsClosed: 'forceps_closed.png',
   baseBody: 'base_body.png'
 };
 
