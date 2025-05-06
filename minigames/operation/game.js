@@ -1,5 +1,5 @@
 // === GLOBALS ===
-  
+
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -28,48 +28,47 @@ const assetManifest = {
 };
 
 if (!canvas) {
-    alert("Canvas not found! Make sure <canvas id='gameCanvas'> is in the HTML.");
-  }
-
+  alert("Canvas not found! Make sure <canvas id='gameCanvas'> is in the HTML.");
+}
 
 // === SPAWN DATA ===
 const pieceSpawnData = {
-    "1_brokenleg": [
-      { piece: "highbone.png", x: 618, y: 838 },
-      { piece: "lowbone.png", x: 618, y: 838 }
-    ],
-    "2_brokenarm-11": [
-      { piece: "highbone.png", x: 725, y: 524 }
-    ],
-    "3_brokenlegs": [
-      { piece: "highbone.png", x: 428, y: 824 },
-      { piece: "lowbone.png", x: 428, y: 824 },
-      { piece: "highbone.png", x: 618, y: 838 },
-      { piece: "lowbone.png", x: 618, y: 838 }
-    ],
-    "3_weird": [
-      { piece: "spider.png", x: 540, y: 504 },
-      { piece: "leaf.png", x: 565, y: 584 },
-      { piece: "gerbil.png", x: 518, y: 896 }
-    ],
-    "4_choke": [
-      { piece: "choke.png", x: 520, y: 324 }
-    ],
-    "5_badnews": [
-      { piece: "highbone.png", x: 428, y: 824 },
-      { piece: "lowbone.png", x: 428, y: 824 },
-      { piece: "highbone.png", x: 618, y: 838 },
-      { piece: "lowbone.png", x: 618, y: 838 },
-      { piece: "highbone.png", x: 720, y: 504 },
-      { piece: "lowbone.png", x: 720, y: 504 },
-      { piece: "leaf.png", x: 420, y: 504 }
-    ],
-    "6_sexfreak": [
-      { piece: "plug.png", x: 520, y: 859 },
-      { piece: "choke.png", x: 520, y: 344 }
-    ]
-  };
-    
+  "1_brokenleg": [
+    { piece: "highbone.png", x: 618, y: 838 },
+    { piece: "lowbone.png", x: 618, y: 838 }
+  ],
+  "2_brokenarm-11": [
+    { piece: "highbone.png", x: 725, y: 524 }
+  ],
+  "3_brokenlegs": [
+    { piece: "highbone.png", x: 428, y: 824 },
+    { piece: "lowbone.png", x: 428, y: 824 },
+    { piece: "highbone.png", x: 618, y: 838 },
+    { piece: "lowbone.png", x: 618, y: 838 }
+  ],
+  "3_weird": [
+    { piece: "spider.png", x: 540, y: 504 },
+    { piece: "leaf.png", x: 565, y: 584 },
+    { piece: "gerbil.png", x: 518, y: 896 }
+  ],
+  "4_choke": [
+    { piece: "choke.png", x: 520, y: 324 }
+  ],
+  "5_badnews": [
+    { piece: "highbone.png", x: 428, y: 824 },
+    { piece: "lowbone.png", x: 428, y: 824 },
+    { piece: "highbone.png", x: 618, y: 838 },
+    { piece: "lowbone.png", x: 618, y: 838 },
+    { piece: "highbone.png", x: 720, y: 504 },
+    { piece: "lowbone.png", x: 720, y: 504 },
+    { piece: "leaf.png", x: 420, y: 504 }
+  ],
+  "6_sexfreak": [
+    { piece: "plug.png", x: 520, y: 859 },
+    { piece: "choke.png", x: 520, y: 344 }
+  ]
+};
+
 // === CLASSES ===
 class GamePiece {
   constructor(name, image, x, y, slotX, slotY, rotation = 0) {
@@ -110,29 +109,24 @@ function preloadImages(callback) {
 }
 
 function spawnPiecesForPuzzle(puzzleName) {
-    gamePieces = [];
-    const entries = pieceSpawnData[puzzleName];
-    if (!entries) return;
-  
-    const offsetX = (canvas.width - 1024) / 2;
-    const offsetY = (canvas.height - 1024) / 2;
-  
-    for (const { piece, x, y } of entries) {
-      const img = images[piece];
-      const rotation = (Math.random() - 0.5) * Math.PI;
-      const p = new GamePiece(
-        piece.replace(".png", ""),
-        img,
-        x + offsetX, // ← apply offset here
-        y + offsetY, // ← apply offset here
-        x + offsetX,
-        y + offsetY,
-        rotation
-      );
-      gamePieces.push(p);
-    }
+  gamePieces = [];
+  const entries = pieceSpawnData[puzzleName];
+  if (!entries) return;
+
+  for (const { piece, x, y } of entries) {
+    const img = images[piece];
+    const rotation = (Math.random() - 0.5) * Math.PI;
+    const p = new GamePiece(
+      piece.replace(".png", ""),
+      img,
+      x, y,
+      x, y,
+      rotation
+    );
+    gamePieces.push(p);
   }
-    
+}
+
 function drawCenteredImage(img) {
   const x = (canvas.width - 1024) / 2;
   const y = (canvas.height - 1024) / 2;
@@ -140,16 +134,16 @@ function drawCenteredImage(img) {
 }
 
 function drawPieces() {
-    for (const piece of gamePieces) {
-      ctx.save();
-      ctx.translate(piece.x, piece.y);
-      ctx.rotate(piece.rotation);
-      ctx.scale(piece.scale, piece.scale);
-      ctx.drawImage(piece.image, -piece.image.width / 2, -piece.image.height / 2);
-      ctx.restore();
-    }
+  for (const piece of gamePieces) {
+    ctx.save();
+    ctx.translate(piece.x, piece.y);
+    ctx.rotate(piece.rotation);
+    ctx.scale(piece.scale, piece.scale);
+    ctx.drawImage(piece.image, -piece.image.width / 2, -piece.image.height / 2);
+    ctx.restore();
   }
-    
+}
+
 function drawForceps() {
   if (forceps.image) {
     ctx.save();
@@ -222,8 +216,6 @@ document.addEventListener('keydown', e => {
 
 // === START ===
 function startGame() {
-    console.log("Active puzzle:", activePuzzle);
-    console.log("Forceps image loaded?", forceps.image instanceof Image);
   const index = Math.floor(Math.random() * assetManifest.backgrounds.length);
   activePuzzle = assetManifest.backgrounds[index];
   forceps.image = images[assetManifest.forcepsOpen];
