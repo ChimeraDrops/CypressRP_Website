@@ -1,9 +1,10 @@
 // === GLOBALS ===
+  
+const canvas = document.getElementById('gameCanvas');
 if (!canvas) {
     alert("Canvas not found! Make sure <canvas id='gameCanvas'> is in the HTML.");
   }
-  
-const canvas = document.getElementById('gameCanvas');
+
 const ctx = canvas.getContext('2d');
 
 let activePuzzle = null;
@@ -25,8 +26,8 @@ let forceps = {
 
 const assetManifest = {
   backgrounds: ['1_brokenleg', '2_brokenarm-11', '3_brokenlegs', '3_weird', '4_choke', '5_badnews', '6_sexfreak'],
-  forcepsOpen: 'forceps_open.png',
-  forcepsClosed: 'forceps_closed.png',
+  forcepsOpen: 'forcep_open.png',
+  forcepsClosed: 'forcep_closed.png',
   baseBody: 'base_body.png'
 };
 
@@ -211,6 +212,8 @@ document.addEventListener('keydown', e => {
 
 // === START ===
 function startGame() {
+    console.log("Active puzzle:", activePuzzle);
+    console.log("Forceps image loaded?", forceps.image instanceof Image);
   const index = Math.floor(Math.random() * assetManifest.backgrounds.length);
   activePuzzle = assetManifest.backgrounds[index];
   forceps.image = images[assetManifest.forcepsOpen];
