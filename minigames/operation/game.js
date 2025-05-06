@@ -1,4 +1,8 @@
 // === GLOBALS ===
+if (!canvas) {
+    alert("Canvas not found! Make sure <canvas id='gameCanvas'> is in the HTML.");
+  }
+  
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
