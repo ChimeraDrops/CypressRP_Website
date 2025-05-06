@@ -47,9 +47,9 @@ const pieceSpawnData = {
     { piece: "lowbone.png", x: 618+180, y: 838 }
   ],
   "3_weird": [
-    { piece: "spider.png", x: 540+180, y: 504 },
-    { piece: "leaf.png", x: 565+180, y: 584 },
-    { piece: "gerbil.png", x: 518+180, y: 896 }
+    { piece: "spider.png", x: 540, y: 504 },
+    { piece: "leaf.png", x: 565+150, y: 584 },
+    { piece: "gerbil.png", x: 518, y: 896 }
   ],
   "4_choke": [
     { piece: "choke.png", x: 520+180, y: 324 }
