@@ -114,14 +114,25 @@ function spawnPiecesForPuzzle(puzzleName) {
     const entries = pieceSpawnData[puzzleName];
     if (!entries) return;
   
+    const offsetX = (canvas.width - 1024) / 2;
+    const offsetY = (canvas.height - 1024) / 2;
+  
     for (const { piece, x, y } of entries) {
       const img = images[piece];
-      const rotation = (Math.random() - 0.5) * Math.PI; // only rotate, do not move
-      const p = new GamePiece(piece.replace(".png", ""), img, x, y, x, y, rotation);
+      const rotation = (Math.random() - 0.5) * Math.PI;
+      const p = new GamePiece(
+        piece.replace(".png", ""),
+        img,
+        x + offsetX, // ← apply offset here
+        y + offsetY, // ← apply offset here
+        x + offsetX,
+        y + offsetY,
+        rotation
+      );
       gamePieces.push(p);
     }
   }
-  
+    
 function drawCenteredImage(img) {
   const x = (canvas.width - 1024) / 2;
   const y = (canvas.height - 1024) / 2;
@@ -129,19 +140,16 @@ function drawCenteredImage(img) {
 }
 
 function drawPieces() {
-    const offsetX = (canvas.width - 1024) / 2;
-    const offsetY = (canvas.height - 1024) / 2;
-  
     for (const piece of gamePieces) {
       ctx.save();
-      ctx.translate(piece.x + offsetX, piece.y + offsetY);  // apply the same offset
+      ctx.translate(piece.x, piece.y);
       ctx.rotate(piece.rotation);
       ctx.scale(piece.scale, piece.scale);
       ctx.drawImage(piece.image, -piece.image.width / 2, -piece.image.height / 2);
       ctx.restore();
     }
   }
-  
+    
 function drawForceps() {
   if (forceps.image) {
     ctx.save();
