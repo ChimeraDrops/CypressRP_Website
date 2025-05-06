@@ -1,10 +1,6 @@
 // === GLOBALS ===
   
 const canvas = document.getElementById('gameCanvas');
-if (!canvas) {
-    alert("Canvas not found! Make sure <canvas id='gameCanvas'> is in the HTML.");
-  }
-
 const ctx = canvas.getContext('2d');
 
 let activePuzzle = null;
@@ -30,6 +26,11 @@ const assetManifest = {
   forcepsClosed: 'forcep_closed.png',
   baseBody: 'base_body.png'
 };
+
+if (!canvas) {
+    alert("Canvas not found! Make sure <canvas id='gameCanvas'> is in the HTML.");
+  }
+
 
 // === SPAWN DATA ===
 const pieceSpawnData = {
