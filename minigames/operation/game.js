@@ -34,38 +34,38 @@ if (!canvas) {
 // === SPAWN DATA ===
 const pieceSpawnData = {
   "1_brokenleg": [
-    { piece: "highbone.png", x: 618, y: 838 },
-    { piece: "lowbone.png", x: 618, y: 838 }
+    { piece: "highbone.png", x: 618+180, y: 838 },
+    { piece: "lowbone.png", x: 618+180, y: 838 }
   ],
   "2_brokenarm-11": [
-    { piece: "highbone.png", x: 725, y: 524 }
+    { piece: "highbone.png", x: 725+180, y: 524 }
   ],
   "3_brokenlegs": [
-    { piece: "highbone.png", x: 428, y: 824 },
-    { piece: "lowbone.png", x: 428, y: 824 },
-    { piece: "highbone.png", x: 618, y: 838 },
-    { piece: "lowbone.png", x: 618, y: 838 }
+    { piece: "highbone.png", x: 428+180, y: 824 },
+    { piece: "lowbone.png", x: 428+180, y: 824 },
+    { piece: "highbone.png", x: 618+180, y: 838 },
+    { piece: "lowbone.png", x: 618+180, y: 838 }
   ],
   "3_weird": [
-    { piece: "spider.png", x: 540, y: 504 },
-    { piece: "leaf.png", x: 565, y: 584 },
-    { piece: "gerbil.png", x: 518, y: 896 }
+    { piece: "spider.png", x: 540+180, y: 504 },
+    { piece: "leaf.png", x: 565+180, y: 584 },
+    { piece: "gerbil.png", x: 518+180, y: 896 }
   ],
   "4_choke": [
-    { piece: "choke.png", x: 520, y: 324 }
+    { piece: "choke.png", x: 520+180, y: 324 }
   ],
   "5_badnews": [
-    { piece: "highbone.png", x: 428, y: 824 },
-    { piece: "lowbone.png", x: 428, y: 824 },
-    { piece: "highbone.png", x: 618, y: 838 },
-    { piece: "lowbone.png", x: 618, y: 838 },
-    { piece: "highbone.png", x: 720, y: 504 },
-    { piece: "lowbone.png", x: 720, y: 504 },
-    { piece: "leaf.png", x: 420, y: 504 }
+    { piece: "highbone.png", x: 428+180, y: 824 },
+    { piece: "lowbone.png", x: 428+180, y: 824 },
+    { piece: "highbone.png", x: 618+180, y: 838 },
+    { piece: "lowbone.png", x: 618+180, y: 838 },
+    { piece: "highbone.png", x: 720+180, y: 504 },
+    { piece: "lowbone.png", x: 720+180, y: 504 },
+    { piece: "leaf.png", x: 420+180, y: 504 }
   ],
   "6_sexfreak": [
-    { piece: "plug.png", x: 520, y: 859 },
-    { piece: "choke.png", x: 520, y: 344 }
+    { piece: "plug.png", x: 520+180, y: 859 },
+    { piece: "choke.png", x: 520+180, y: 344 }
   ]
 };
 
