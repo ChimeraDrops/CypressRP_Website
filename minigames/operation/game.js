@@ -136,7 +136,7 @@ function drawCenteredImage(img) {
 function drawPieces() {
   for (const piece of gamePieces) {
     ctx.save();
-    const offsetX = ((canvas.width - 1024) / 2)-200;
+    const offsetX = ((canvas.width - 1024) / 2)-100;
     const offsetY = ((canvas.height - 1024) / 2);
     ctx.translate(piece.x + offsetX, piece.y + offsetY);
     ctx.rotate(piece.rotation);
