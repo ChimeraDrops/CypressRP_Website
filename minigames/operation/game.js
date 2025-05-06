@@ -129,16 +129,19 @@ function drawCenteredImage(img) {
 }
 
 function drawPieces() {
-  for (const piece of gamePieces) {
-    ctx.save();
-    ctx.translate(piece.x, piece.y);
-    ctx.rotate(piece.rotation);
-    ctx.scale(piece.scale, piece.scale);
-    ctx.drawImage(piece.image, -piece.image.width / 2, -piece.image.height / 2);
-    ctx.restore();
+    const offsetX = (canvas.width - 1024) / 2;
+    const offsetY = (canvas.height - 1024) / 2;
+  
+    for (const piece of gamePieces) {
+      ctx.save();
+      ctx.translate(piece.x + offsetX, piece.y + offsetY);  // apply the same offset
+      ctx.rotate(piece.rotation);
+      ctx.scale(piece.scale, piece.scale);
+      ctx.drawImage(piece.image, -piece.image.width / 2, -piece.image.height / 2);
+      ctx.restore();
+    }
   }
-}
-
+  
 function drawForceps() {
   if (forceps.image) {
     ctx.save();
