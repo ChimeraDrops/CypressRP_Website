@@ -35,41 +35,41 @@ if (!canvas) {
 // === SPAWN DATA ===
 const pieceSpawnData = {
     "1_brokenleg": [
-      { piece: "highbone.png", x: 609+500, y: 839 },
-      { piece: "lowbone.png", x: 601+500, y: 727 }
+      { piece: "highbone.png", x: 618, y: 838 },
+      { piece: "lowbone.png", x: 618, y: 838 }
     ],
     "2_brokenarm-11": [
-      { piece: "highbone.png", x: 711+500, y: 390 }
+      { piece: "highbone.png", x: 725, y: 524 }
     ],
     "3_brokenlegs": [
-      { piece: "highbone.png", x: 413+500, y: 657 },
-      { piece: "lowbone.png", x: 435+500, y: 823 },
-      { piece: "highbone.png", x: 641+500, y: 661 },
-      { piece: "lowbone.png", x: 612+500, y: 840 }
+      { piece: "highbone.png", x: 428, y: 824 },
+      { piece: "lowbone.png", x: 428, y: 824 },
+      { piece: "highbone.png", x: 618, y: 838 },
+      { piece: "lowbone.png", x: 618, y: 838 }
     ],
     "3_weird": [
-      { piece: "spider.png", x: 435+500, y: 504 },
-      { piece: "leaf.png", x: 564+500, y: 577 },
-      { piece: "gerbil.png", x: 511+500, y: 880 }
+      { piece: "spider.png", x: 540, y: 504 },
+      { piece: "leaf.png", x: 565, y: 584 },
+      { piece: "gerbil.png", x: 518, y: 896 }
     ],
     "4_choke": [
-      { piece: "choke.png", x: 511+500, y: 192 }
+      { piece: "choke.png", x: 520, y: 324 }
     ],
     "5_badnews": [
-      { piece: "highbone.png", x: 442+500, y: 385 },
-      { piece: "lowbone.png", x: 442+500, y: 478 },
-      { piece: "highbone.png", x: 418+500, y: 668 },
-      { piece: "lowbone.png", x: 439+500, y: 693 },
-      { piece: "highbone.png", x: 639+500, y: 661 },
-      { piece: "lowbone.png", x: 632+500, y: 675 },
-      { piece: "leaf.png", x: 436+500, y: 824 }
+      { piece: "highbone.png", x: 428, y: 824 },
+      { piece: "lowbone.png", x: 428, y: 824 },
+      { piece: "highbone.png", x: 618, y: 838 },
+      { piece: "lowbone.png", x: 618, y: 838 },
+      { piece: "highbone.png", x: 720, y: 504 },
+      { piece: "lowbone.png", x: 720, y: 504 },
+      { piece: "leaf.png", x: 420, y: 504 }
     ],
     "6_sexfreak": [
-      { piece: "plug.png", x: 516+500, y: 352 },
-      { piece: "choke.png", x: 513+500, y: 233 }
+      { piece: "plug.png", x: 520, y: 859 },
+      { piece: "choke.png", x: 520, y: 344 }
     ]
   };
-  
+    
 // === CLASSES ===
 class GamePiece {
   constructor(name, image, x, y, slotX, slotY, rotation = 0) {
