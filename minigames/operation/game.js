@@ -110,21 +110,18 @@ function preloadImages(callback) {
 }
 
 function spawnPiecesForPuzzle(puzzleName) {
-  gamePieces = [];
-  const entries = pieceSpawnData[puzzleName];
-  if (!entries) return;
-
-  for (const { piece, x, y } of entries) {
-    const img = images[piece];
-    const offset = 20;
-    const spawnX = x + (Math.random() - 0.5) * offset;
-    const spawnY = y + (Math.random() - 0.5) * offset;
-    const rotation = (Math.random() - 0.5) * Math.PI;
-    const p = new GamePiece(piece.replace(".png", ""), img, spawnX, spawnY, x, y, rotation);
-    gamePieces.push(p);
+    gamePieces = [];
+    const entries = pieceSpawnData[puzzleName];
+    if (!entries) return;
+  
+    for (const { piece, x, y } of entries) {
+      const img = images[piece];
+      const rotation = (Math.random() - 0.5) * Math.PI; // only rotate, do not move
+      const p = new GamePiece(piece.replace(".png", ""), img, x, y, x, y, rotation);
+      gamePieces.push(p);
+    }
   }
-}
-
+  
 function drawCenteredImage(img) {
   const x = (canvas.width - 1024) / 2;
   const y = (canvas.height - 1024) / 2;
