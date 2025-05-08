@@ -214,45 +214,45 @@ function isCollidingWithOpaquePixel(piece) {
 
 function isPieceCollidingWithBodyMask(piece) {
   const imgData = piece.image;
-  const sampleStep = 4; // Increase for performance, decrease for precision
-
+  const sampleStep = 6; // Larger step for faster performance
   const offsetX = (canvas.width - 1024) / 2;
   const offsetY = (canvas.height - 1024) / 2;
 
-  // Draw the piece image onto an offscreen canvas to get pixel data
   const tempCanvas = document.createElement('canvas');
   tempCanvas.width = imgData.width;
   tempCanvas.height = imgData.height;
   const tempCtx = tempCanvas.getContext('2d');
-  tempCtx.clearRect(0, 0, tempCanvas.width, tempCanvas.height);
   tempCtx.drawImage(imgData, 0, 0);
   const piecePixels = tempCtx.getImageData(0, 0, imgData.width, imgData.height).data;
+
+  let collidingPixelCount = 0;
+  const collisionThreshold = 10; // Only fail if more than 10 pixels overlap
 
   for (let y = 0; y < imgData.height; y += sampleStep) {
     for (let x = 0; x < imgData.width; x += sampleStep) {
       const index = (y * imgData.width + x) * 4;
       const alpha = piecePixels[index + 3];
-      if (alpha < 50) continue; // transparent pixel in the piece, ignore
+      if (alpha < 50) continue;
 
-      // Transform pixel to world space (scaled + rotated + offset)
+      // Local centered coordinates
       let localX = x - imgData.width / 2;
       let localY = y - imgData.height / 2;
 
-      // Scale
+      // Apply scale
       localX *= piece.scale;
       localY *= piece.scale;
 
-      // Rotate
+      // Apply rotation
       const cos = Math.cos(piece.rotation);
       const sin = Math.sin(piece.rotation);
       const rotatedX = localX * cos - localY * sin;
       const rotatedY = localX * sin + localY * cos;
 
-      // Translate to screen position
+      // Translate to canvas space
       const screenX = piece.x + rotatedX;
       const screenY = piece.y + rotatedY;
 
-      // Convert to body image space
+      // Convert to overlay mask space
       const bodyX = Math.floor(screenX - offsetX);
       const bodyY = Math.floor(screenY - offsetY);
 
@@ -260,12 +260,7 @@ function isPieceCollidingWithBodyMask(piece) {
         bodyX < 0 || bodyY < 0 || bodyX >= 1024 || bodyY >= 1024
       ) continue;
 
-      const bodyPixel = bodyHitCtx.getImageData(bodyX, bodyY, 1, 1).data;
-      if (bodyPixel[3] > 50) {
-        return true; // collision found
-      }
-    }
-  }
+      const bodyPixel = bodyHitCtx.getImageData(bodyX,
 
   return false; // no collision detected
 }
