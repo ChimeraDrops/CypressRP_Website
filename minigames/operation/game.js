@@ -324,9 +324,12 @@ canvas.addEventListener('mouseup', e => {
 canvas.addEventListener('wheel', e => {
   if (forceps.heldPiece) {
     const piece = forceps.heldPiece;
+  
     if (forceps.isLeftHeld && !e.shiftKey) {
       piece.scale += 0.05;
-      if (piece.scale >= 1.0) {
+  
+      if (piece.scale.toFixed(2) === "1.00") {
+        // Check collision only at exactly 1.0 scale
         if (isPieceCollidingWithBodyMask(piece)) {
           console.log("FAILED");
           piece.scale = 0.85;
@@ -334,7 +337,12 @@ canvas.addEventListener('wheel', e => {
         } else {
           piece.extracted = true;
         }
+      } else if (piece.scale > 1.0) {
+        // Beyond 1.0 = safe, it's being "extracted"
+        piece.extracted = true;
       }
+  
+      // Optional: auto-delete when large
       if (piece.scale >= 1.25) {
         gamePieces = gamePieces.filter(p => p !== piece);
         forceps.heldPiece = null;
@@ -344,7 +352,7 @@ canvas.addEventListener('wheel', e => {
       piece.rotation += direction * 0.1;
     }
   }
-  e.preventDefault();
+    e.preventDefault();
 }, { passive: false });
 
 canvas.addEventListener('contextmenu', e => e.preventDefault());
