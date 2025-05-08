@@ -402,6 +402,10 @@ document.addEventListener('keydown', e => {
 });
 
 function startGame() {
+  document.getElementById("ambientSound").volume = 0.5;
+  document.getElementById("successSound").volume = 0.5;
+  document.getElementById("failSound").volume = 0.5;
+
   const index = Math.floor(Math.random() * assetManifest.backgrounds.length);
   activePuzzle = assetManifest.backgrounds[index];
   bodyHitCanvas.width = 1024;
