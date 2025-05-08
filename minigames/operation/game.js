@@ -184,7 +184,14 @@ function getForcepsTipPosition() {
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawPieces();
-  if (activePuzzle) drawCenteredImage(images[`${activePuzzle}.png`]);
+  if (activePuzzle) {
+    if (failFlashCounter > 0) {
+      drawCenteredImage(images[`${activePuzzle}_fail.png`]);
+      failFlashCounter--;
+    } else {
+      drawCenteredImage(images[`${activePuzzle}.png`]);
+    }
+  }
   drawExtractedPieces();
   drawForceps();
   if (forceps.heldPiece && (forceps.isLeftHeld || forceps.isRightHeld)) {
@@ -330,14 +337,17 @@ canvas.addEventListener('wheel', e => {
   
       if (piece.scale.toFixed(2) === "1.00") {
         // Check collision only at exactly 1.0 scale
-        if (isPieceCollidingWithBodyMask(piece)) {
-          console.log("FAILED");
-          piece.scale = 0.85;
-          piece.extracted = false;
-        } else {
-          piece.extracted = true;
+        if (piece.scale.toFixed(2) === "1.00") {
+          if (isPieceCollidingWithBodyMask(piece)) {
+            console.log("FAILED");
+            piece.scale = 0.85;
+            piece.extracted = false;
+            failFlashCounter = 30;
+          } else {
+            piece.extracted = true;
+          }
         }
-      } else if (piece.scale > 1.0) {
+              } else if (piece.scale > 1.0) {
         // Beyond 1.0 = safe, it's being "extracted"
         piece.extracted = true;
       }
