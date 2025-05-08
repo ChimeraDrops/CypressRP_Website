@@ -418,4 +418,15 @@ function startGame() {
   requestAnimationFrame(gameLoop);
 }
 
+document.addEventListener('click', function handleFirstClick() {
+  const ambient = document.getElementById("ambientSound");
+  if (ambient) {
+    ambient.volume = 0.4;
+    ambient.play().catch(e => console.warn("Audio play blocked:", e));
+  }
+
+  // Remove this listener after the first click
+  document.removeEventListener('click', handleFirstClick);
+});
+
 preloadImages(startGame);
