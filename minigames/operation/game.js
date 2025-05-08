@@ -191,11 +191,19 @@ function gameLoop() {
     if (failFlashCounter > 0) {
       drawCenteredImage(images[`${activePuzzle}_fail.png`]);
       failFlashCounter--;
+    } else if (successFlashCounter > 0) {
+      drawCenteredImage(images[`${activePuzzle}_success.png`]);
+      successFlashCounter--;
+      if (successFlashCounter === 0) {
+        setTimeout(() => {
+          startGame(); // load a new random puzzle
+        }, 100); // small delay so success image is fully removed before new puzzle
+      }
     } else {
       drawCenteredImage(images[`${activePuzzle}.png`]);
     }
   }
-  drawExtractedPieces();
+    drawExtractedPieces();
   drawForceps();
   if (forceps.heldPiece && (forceps.isLeftHeld || forceps.isRightHeld)) {
     const tip = getForcepsTipPosition();
@@ -372,6 +380,11 @@ canvas.addEventListener('wheel', e => {
         successCount++;
         document.getElementById("successSound").play();
         updateScoreHUD();
+
+      // ✅ If that was the last piece, start the success flash
+      if (gamePieces.length === 0) {
+        successFlashCounter = 30; // ~0.5 seconds
+      }
 
       }
     } else if (e.shiftKey) {
