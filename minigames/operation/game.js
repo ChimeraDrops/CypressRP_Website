@@ -12,6 +12,9 @@ let failFlashCounter = 0;
 let successFlashCounter = 0;
 let bodyHitCanvas = document.createElement('canvas');
 let bodyHitCtx = bodyHitCanvas.getContext('2d');
+let failCount = 0;
+let successCount = 0;
+
 
 
 let forceps = {
@@ -343,11 +346,14 @@ canvas.addEventListener('wheel', e => {
             piece.scale = 0.85;
             piece.extracted = false;
             failFlashCounter = 30;
+            failCount++;
+            document.getElementById("score").innerText = `Successes: ${successCount} | Fails: ${failCount}`;
+
           } else {
             piece.extracted = true;
           }
         }
-              } else if (piece.scale > 1.0) {
+                      } else if (piece.scale > 1.0) {
         // Beyond 1.0 = safe, it's being "extracted"
         piece.extracted = true;
       }
@@ -356,6 +362,7 @@ canvas.addEventListener('wheel', e => {
       if (piece.scale >= 1.25) {
         gamePieces = gamePieces.filter(p => p !== piece);
         forceps.heldPiece = null;
+        successCount++;
       }
     } else if (e.shiftKey) {
       const direction = e.deltaY < 0 ? 1 : -1;
