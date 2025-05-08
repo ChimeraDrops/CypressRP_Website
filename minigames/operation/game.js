@@ -222,6 +222,10 @@ function isCollidingWithOpaquePixel(piece) {
   return alpha > 50; // collision if opaque
 }
 
+function updateScoreHUD() {
+  document.getElementById("score").innerText = `Successes: ${successCount} | Fails: ${failCount}`;
+}
+
 function isPieceCollidingWithBodyMask(piece) {
   const imgData = piece.image;
   const sampleStep = 6; // Larger step for faster performance
@@ -349,6 +353,8 @@ canvas.addEventListener('wheel', e => {
             failCount++;
             document.getElementById("failSound").play();
             document.getElementById("score").innerText = `Successes: ${successCount} | Fails: ${failCount}`;
+            updateScoreHUD();
+
 
           } else {
             piece.extracted = true;
@@ -365,6 +371,8 @@ canvas.addEventListener('wheel', e => {
         forceps.heldPiece = null;
         successCount++;
         document.getElementById("successSound").play();
+        updateScoreHUD();
+
       }
     } else if (e.shiftKey) {
       const direction = e.deltaY < 0 ? 1 : -1;
