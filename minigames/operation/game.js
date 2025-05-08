@@ -347,6 +347,7 @@ canvas.addEventListener('wheel', e => {
             piece.extracted = false;
             failFlashCounter = 30;
             failCount++;
+            document.getElementById("failSound").play();
             document.getElementById("score").innerText = `Successes: ${successCount} | Fails: ${failCount}`;
 
           } else {
@@ -363,6 +364,7 @@ canvas.addEventListener('wheel', e => {
         gamePieces = gamePieces.filter(p => p !== piece);
         forceps.heldPiece = null;
         successCount++;
+        document.getElementById("successSound").play();
       }
     } else if (e.shiftKey) {
       const direction = e.deltaY < 0 ? 1 : -1;
