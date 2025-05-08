@@ -260,9 +260,17 @@ function isPieceCollidingWithBodyMask(piece) {
         bodyX < 0 || bodyY < 0 || bodyX >= 1024 || bodyY >= 1024
       ) continue;
 
-      const bodyPixel = bodyHitCtx.getImageData(bodyX,
+      const bodyPixel = bodyHitCtx.getImageData(bodyX, bodyY, 1, 1).data;
+      if (bodyPixel[3] > 50) {
+        collidingPixelCount++;
+        if (collidingPixelCount >= collisionThreshold) {
+          return true; // too many overlaps = fail
+        }
+      }
+    }
+  }
 
-  return false; // no collision detected
+  return false;
 }
 
 
