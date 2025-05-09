@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+  }
+  
+  /* .candle-row {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .flame {
+    width: 128px;
+    height: auto;
+    transition: transform 0.1s ease-in-out;
+  } */
+  
+  #flyCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 2;
+    pointer-events: auto;
+    cursor: crosshair; /* optional: gives visual feedback */
+    border: none;
+  }
+  
