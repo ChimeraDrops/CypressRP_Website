@@ -6,21 +6,48 @@ const flies = [];
 const bees = [];
 const FLY_COUNT = 6;
 const BEE_COUNT = 10;
+
 const chopsticksOpen = new Image();
 const chopsticksClosed = new Image();
 chopsticksOpen.src = 'assets/images/chopsticks/chopsticks_open.png';
 chopsticksClosed.src = 'assets/images/chopsticks/chopsticks_closed.png';
 
 let isMouseDown = false;
-let chopsticksOffsetX = 800; // Adjust to match red dot x offset
-let chopsticksOffsetY = 700; // Adjust to match red dot y offset
-
-
+let chopsticksOffsetX = 800;
+let chopsticksOffsetY = 700;
 let mouseX = 0;
 let mouseY = 0;
+let backgroundStarted = false;
+let animationFrameId = null;
+
+// Sound Effects
+const ouchSound = document.getElementById('ouchSound');
+const backgroundMusic = document.getElementById('backgroundMusic');
+const beeBuzzSound = document.getElementById('beeBuzzSound');
+
+function startBackgroundMusic() {
+  if (!backgroundStarted) {
+    backgroundMusic.volume = 0.7;
+    backgroundMusic.play().catch(e => {
+      console.warn("Autoplay blocked.", e);
+    });
+    backgroundStarted = true;
+  }
+}
 
 document.getElementById('startButton').addEventListener('click', () => {
   document.getElementById('loadScreen').style.display = 'none';
+  startBackgroundMusic();
+  beeBuzzSound.currentTime = 0;
+  beeBuzzSound.play();
+  startFlock();
+});
+
+document.getElementById('restartButton').addEventListener('click', () => {
+  document.getElementById('winScreen').style.display = 'none';
+  startBackgroundMusic();
+  beeBuzzSound.currentTime = 0;
+  beeBuzzSound.play();
   startFlock();
 });
 
@@ -29,7 +56,6 @@ canvas.addEventListener('mousemove', (e) => {
   mouseX = e.clientX - rect.left;
   mouseY = e.clientY - rect.top;
 });
-
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -60,10 +86,10 @@ flyFramePaths.forEach((path) => {
   img.src = path;
   img.onload = () => {
     flyLoaded++;
-  if (flyLoaded === flyFramePaths.length && beeLoaded === beeFramePaths.length) {
-    isReady = true;
-    document.getElementById('startButton').disabled = false; // Optional: enable Start button
-  }
+    if (flyLoaded === flyFramePaths.length && beeLoaded === beeFramePaths.length) {
+      isReady = true;
+      document.getElementById('startButton').disabled = false;
+    }
   };
   flyFrames.push(img);
 });
@@ -117,15 +143,19 @@ function createBee() {
 }
 
 function startFlock() {
+  if (animationFrameId) cancelAnimationFrame(animationFrameId);
+  flies.length = 0;
+  bees.length = 0;
   for (let i = 0; i < FLY_COUNT; i++) flies.push(createFly());
   for (let i = 0; i < BEE_COUNT; i++) bees.push(createBee());
-  requestAnimationFrame(animate);
+  animationFrameId = requestAnimationFrame(animate);
 }
 
 function showWinScreen() {
   document.getElementById('winScreen').style.display = 'flex';
+  beeBuzzSound.pause();
+  beeBuzzSound.currentTime = 0;
 }
-
 
 function animate(timestamp) {
   if (!isReady) return;
@@ -141,7 +171,6 @@ function animate(timestamp) {
       const dx = fly.x + fly.width / 2 - mouseX;
       const dy = fly.y + fly.height / 2 - mouseY;
       const distance = Math.sqrt(dx * dx + dy * dy);
-
       if (distance < 100) {
         const angle = Math.atan2(dy, dx);
         fly.targetX = fly.x + Math.cos(angle) * 150;
@@ -206,7 +235,7 @@ function animate(timestamp) {
   });
 
   const chopsticksImg = isMouseDown ? chopsticksClosed : chopsticksOpen;
-  const scale = 0.3; // adjust this to make them smaller or larger
+  const scale = 0.3;
   const width = chopsticksImg.width * scale;
   const height = chopsticksImg.height * scale;
 
@@ -218,27 +247,22 @@ function animate(timestamp) {
     height
   );
 
-const activeFlies = flies.filter(f => !f.clicked);
-
-if (activeFlies.length === 0 && bees.length > 0) {
-  bees.forEach(bee => {
-    bee.targetX = -200; // fly left off screen
-    bee.leaveOnExit = true;
-    if (bee.leaveOnExit && bee.x + bee.width < 0) {
-      bees.splice(bees.indexOf(bee), 1);
-    }
-  });
-  if (flies.every(f => f.clicked) && bees.length === 0) {
-  showWinScreen();
-  }
-
-}
-
   if (flies.every(f => f.clicked) && bees.length === 0) {
     showWinScreen();
   }
-  
-  requestAnimationFrame(animate);
+
+  const activeFlies = flies.filter(f => !f.clicked);
+  if (activeFlies.length === 0 && bees.length > 0) {
+    bees.forEach(bee => {
+      bee.targetX = -200;
+      bee.leaveOnExit = true;
+      if (bee.leaveOnExit && bee.x + bee.width < 0) {
+        bees.splice(bees.indexOf(bee), 1);
+      }
+    });
+  }
+
+  animationFrameId = requestAnimationFrame(animate);
 }
 
 canvas.addEventListener('mousedown', () => {
@@ -261,7 +285,6 @@ canvas.addEventListener('click', (e) => {
       mouseY >= fly.y && mouseY <= fly.y + fly.height
     ) {
       fly.clicked = true;
-      console.log("Fly clicked!");
     }
   });
 
@@ -271,14 +294,8 @@ canvas.addEventListener('click', (e) => {
       mouseY >= bee.y && mouseY <= bee.y + bee.height
     ) {
       flies.push(createFly());
-      console.log("Bee clicked – spawned a fly!");
+      ouchSound.currentTime = 0;
+      ouchSound.play();
     }
   });
-});
-
-document.getElementById('restartButton').addEventListener('click', () => {
-  document.getElementById('winScreen').style.display = 'none';
-  flies.length = 0;
-  bees.length = 0;
-  startFlock();
 });

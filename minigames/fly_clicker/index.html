@@ -6,8 +6,6 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- <div class="candle-row"> ... </div> -->
-
   <!-- Load Screen -->
   <div id="loadScreen">
     <div class="load-content">
@@ -23,7 +21,7 @@
     </div>
   </div>
 
-  <!-- ✅ Win Screen must be separate! -->
+  <!-- Win Screen -->
   <div id="winScreen" style="display:none;">
     <div class="load-content">
       <h1>You Saved The Bees!</h1>
@@ -32,6 +30,12 @@
   </div>
 
   <canvas id="flyCanvas"></canvas>
+
+  <!-- Audio -->
+  <audio id="ouchSound" src="assets/sounds/ouch.wav"></audio>
+  <audio id="backgroundMusic" src="assets/sounds/backgroundmusic.wav" loop></audio>
+  <audio id="beeBuzzSound" src="assets/sounds/bees.wav" loop></audio>
+
   <script src="script.js"></script>
 </body>
 </html>

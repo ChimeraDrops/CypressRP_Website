@@ -1,26 +1,25 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
   background: url('assets/images/HiveBackground.png') no-repeat center center fixed;
   background-size: cover;
-  }
-  
-  
-  #flyCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    z-index: 2;
-    pointer-events: auto;
-    cursor: crosshair; /* optional: gives visual feedback */
-    border: none;
-  }
-  
-  #loadScreen {
+}
+
+#flyCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  z-index: 2;
+  pointer-events: auto;
+  cursor: crosshair;
+  border: none;
+}
+
+#loadScreen, #winScreen {
   position: fixed;
   top: 0;
   left: 0;
@@ -38,20 +37,7 @@ html, body {
 }
 
 #winScreen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
-  z-index: 5;
   display: none;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  text-align: center;
-  font-family: sans-serif;
-  backdrop-filter: blur(3px);
 }
 
 .load-content {
@@ -84,7 +70,7 @@ html, body {
 
 @keyframes buzz {
   0%   { background-position: 0 0; }
-  100% { background-position: -256px 0; } /* Adjust for sprite strip if used */
+  100% { background-position: -256px 0; }
 }
 
 #startButton {
