@@ -2,24 +2,10 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #000;
+  background: url('assets/images/HiveBackground.png') no-repeat center center fixed;
+  background-size: cover;
   }
   
-  /* .candle-row {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .flame {
-    width: 128px;
-    height: auto;
-    transition: transform 0.1s ease-in-out;
-  } */
   
   #flyCanvas {
     position: fixed;
@@ -34,3 +20,67 @@ html, body {
     border: none;
   }
   
+  #loadScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('assets/images/beehive.jpg') no-repeat center center;
+  background-size: cover;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  font-family: sans-serif;
+  backdrop-filter: blur(3px);
+}
+
+.load-content {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.load-animations {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.fly-preview, .bee-preview {
+  width: 64px;
+  height: 64px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: buzz 0.5s steps(4) infinite;
+}
+
+.fly-preview {
+  background-image: url('assets/images/fly_idle/frames/fly_idle1.png');
+}
+
+.bee-preview {
+  background-image: url('assets/images/bee/bee_1.png');
+}
+
+@keyframes buzz {
+  0%   { background-position: 0 0; }
+  100% { background-position: -256px 0; } /* Adjust for sprite strip if used */
+}
+
+#startButton {
+  padding: 12px 24px;
+  font-size: 18px;
+  background: #ffd700;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#startButton:hover {
+  background: #ffb400;
+}
