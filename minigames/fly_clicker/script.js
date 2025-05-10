@@ -122,6 +122,11 @@ function startFlock() {
   requestAnimationFrame(animate);
 }
 
+function showWinScreen() {
+  document.getElementById('winScreen').style.display = 'flex';
+}
+
+
 function animate(timestamp) {
   if (!isReady) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -213,7 +218,26 @@ function animate(timestamp) {
     height
   );
 
+const activeFlies = flies.filter(f => !f.clicked);
 
+if (activeFlies.length === 0 && bees.length > 0) {
+  bees.forEach(bee => {
+    bee.targetX = -200; // fly left off screen
+    bee.leaveOnExit = true;
+    if (bee.leaveOnExit && bee.x + bee.width < 0) {
+      bees.splice(bees.indexOf(bee), 1);
+    }
+  });
+  if (flies.every(f => f.clicked) && bees.length === 0) {
+  showWinScreen();
+  }
+
+}
+
+  if (flies.every(f => f.clicked) && bees.length === 0) {
+    showWinScreen();
+  }
+  
   requestAnimationFrame(animate);
 }
 
@@ -250,4 +274,11 @@ canvas.addEventListener('click', (e) => {
       console.log("Bee clicked – spawned a fly!");
     }
   });
+});
+
+document.getElementById('restartButton').addEventListener('click', () => {
+  document.getElementById('winScreen').style.display = 'none';
+  flies.length = 0;
+  bees.length = 0;
+  startFlock();
 });

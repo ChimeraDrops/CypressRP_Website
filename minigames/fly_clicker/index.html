@@ -6,24 +6,30 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- <div class="candle-row">
-    <img class="flame" id="flame1" src="assets/images/candle/flame_3.png" alt="Candle Flame 1" />
-    <img class="flame" id="flame2" src="assets/images/candle/flame_3.png" alt="Candle Flame 2" />
-    <img class="flame" id="flame3" src="assets/images/candle/flame_3.png" alt="Candle Flame 3" />
-  </div> -->
+  <!-- <div class="candle-row"> ... </div> -->
+
+  <!-- Load Screen -->
   <div id="loadScreen">
-  <div class="load-content">
-    <h1>Hornets are Attacking your Bees!</h1>
-    <p>Catch all the Hornets! Don't Click the Bees!</p>
+    <div class="load-content">
+      <h1>Hornets are Attacking your Bees!</h1>
+      <p>Catch all the Hornets! Don't Click the Bees!</p>
 
-    <div class="load-animations">
-      <div class="fly-preview"></div>
-      <div class="bee-preview"></div>
+      <div class="load-animations">
+        <div class="fly-preview"></div>
+        <div class="bee-preview"></div>
+      </div>
+
+      <button id="startButton">Start Game</button>
     </div>
-
-    <button id="startButton">Start Game</button>
   </div>
-</div>
+
+  <!-- ✅ Win Screen must be separate! -->
+  <div id="winScreen" style="display:none;">
+    <div class="load-content">
+      <h1>You Saved The Bees!</h1>
+      <button id="restartButton">Start Game</button>
+    </div>
+  </div>
 
   <canvas id="flyCanvas"></canvas>
   <script src="script.js"></script>
