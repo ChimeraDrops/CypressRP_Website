@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "sender": "Mom",
+    "content": "Did you eat today?"
+  },
+  {
+    "id": 2,
+    "sender": "Boss",
+    "content": "Don't forget the meeting at 4."
+  },
+  {
+    "id": 1746940490844,
+    "sender": "Player1",
+    "content": "test"
+  },
+  {
+    "id": 1746941187732,
+    "from": "4201234567",
+    "to": "4201234567",
+    "content": "t"
+  }
+]
