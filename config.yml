@@ -1,0 +1,5 @@
+exclude:
+  - CRP_Phone
+  - node_modules
+  - vendor
+  - package.json
