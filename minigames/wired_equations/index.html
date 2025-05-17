@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wire Cutting Minigame</title>
+  <link rel="stylesheet" href="wired_equations.css" />
+</head>
+<body>
+  <div id="hud">
+    <div id="timer">Time Left: <span id="time">20</span>s</div>
+    <div id="round">Round: <span id="round-count">1</span> of 3</div>
+
+  </div>
+  <div id="startScreen" style="
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Courier New, monospace;
+    color: #00f2ff;
+    text-align: center;
+    ">
+    <h1 style="font-size: 2em; margin-bottom: 20px;">💻 Click Start to Begin</h1>
+    <button id="startButton" style="
+        padding: 12px 30px;
+        font-size: 1em;
+        background: #00f2ff;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 10px #00f2ff;
+        cursor: pointer;
+    ">Start Game</button>
+  </div>
+
+  <div id="game">
+    <div id="left-side">
+      <div class="node source" id="num-0">1</div>
+      <div class="node source" id="num-1">2</div>
+      <div class="node source" id="num-2">3</div>
+      <div class="node source" id="num-3">4</div>
+      <div class="node source" id="num-4">5</div>
+        <div id="credit" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); font-size: 0.75em; color: #888; font-family: Courier New, monospace;">
+        Music: "Night Owl" by Broke For Free – Licensed under CC BY 3.0
+        </div>
+
+    </div>
+
+    <svg id="wire-canvas"></svg>
+
+    <div id="right-side">
+      <div class="node target" id="eq-0">2X = 2</div>
+      <div class="node target" id="eq-1">X + 3 = 5</div>
+      <div class="node target" id="eq-2">4X = 8</div>
+      <div class="node target" id="eq-3">X - 1 = 3</div>
+      <div class="node target" id="eq-4">X / 2 = 2</div>
+    </div>
+  </div>
+
+  <script src="wired_equations.js"></script>
+  <style>
+    #hud {
+      position: absolute;
+      top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.5em;
+      color: #00f2ff;
+      text-shadow: 0 0 5px #00f2ff;
+      z-index: 10;
+      pointer-events: none;
+    }
+    #timer, #round {
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 20px;
+      border: 2px solid #00f2ff;
+      border-radius: 8px;
+    }
+    
+  </style>
+  <audio id="bg-music" src="assets/sounds/night_owl.mp3" loop></audio>
+
+</body>
+</html>
