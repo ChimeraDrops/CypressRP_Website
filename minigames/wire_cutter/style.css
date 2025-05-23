@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  background: #111;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.game-container {
+  text-align: center;
+}
+
+canvas {
+  background: #222;
+  border: 2px solid #555;
+  border-radius: 50%;
+}
+
+.instructions {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
